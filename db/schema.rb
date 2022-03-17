@@ -105,6 +105,7 @@ ActiveRecord::Schema.define(version: 2022_03_22_031017) do
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "discarded_at"
     t.index ["discarded_at"], name: "index_testimonials_on_discarded_at"
+>>>>>>> 7f9de7a (feat OT170-21: add model and controller for members)
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
