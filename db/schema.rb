@@ -95,17 +95,7 @@ ActiveRecord::Schema.define(version: 2022_03_30_041826) do
 
   create_table "sessions", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.datetime "last_used_at", default: "2022-03-27 19:47:42"
-    t.boolean "status", default: true
-    t.string "token"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_sessions_on_user_id"
-  end
-
-  create_table "sessions", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.datetime "last_used_at", default: "2022-03-27 19:47:42"
+    t.datetime "last_used_at", default: "2022-04-03 22:17:02"
     t.boolean "status", default: true
     t.string "token"
     t.datetime "created_at", precision: 6, null: false
