@@ -75,6 +75,20 @@ ActiveRecord::Schema.define(version: 2022_03_19_223823) do
     t.index ["discarded_at"], name: "index_news_on_discarded_at"
   end
 
+  create_table "organizations", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "address"
+    t.integer "phone"
+    t.string "email", null: false
+    t.text "welcome_text", null: false
+    t.text "about_us_text"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_organizations_on_discarded_at"
+    t.index ["email"], name: "index_organizations_on_email", unique: true
+  end
+
   create_table "testimonials", force: :cascade do |t|
     t.string "name", null: false
     t.text "content"
