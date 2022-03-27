@@ -259,7 +259,11 @@ PLATFORMS
 DEPENDENCIES
   active_storage_validations
   annotate (~> 3.0, >= 3.0.3)
+<<<<<<< HEAD
   bcrypt (~> 3.1.7)
+=======
+  bcrypt (~> 3.1, >= 3.1.17)
+>>>>>>> feat OT170-24: login
   bootsnap (>= 1.4.4)
   brakeman (~> 5.1, >= 5.1.2)
   discard (~> 1.2)
