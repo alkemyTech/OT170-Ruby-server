@@ -2,6 +2,7 @@
 
 class JsonWebToken
   require 'jwt'
+
   SECRET_KEY = Rails.application.secret_key_base
   JWT_EXPIRY = 1.day
 
