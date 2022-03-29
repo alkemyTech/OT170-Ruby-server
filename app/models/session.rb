@@ -5,7 +5,7 @@
 # Table name: sessions
 #
 #  id           :bigint           not null, primary key
-#  last_used_at :datetime         default(Mon, 11 Apr 2022 03:09:25.000000000 UTC +00:00)
+#  last_used_at :datetime         default(Mon, 18 Apr 2022 22:35:12.743441000 UTC +00:00)
 #  status       :boolean          default(TRUE)
 #  token        :string
 #  created_at   :datetime         not null

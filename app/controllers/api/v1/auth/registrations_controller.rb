@@ -8,6 +8,7 @@ module Api
 
         def create
           @user = User.new(registration_params)
+          @user.role = Role.create_or_find_by(name: 'user')
 
           @user.save ? success_user_created : error_user_save
         end
