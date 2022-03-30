@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2022_04_09_004809) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
-    t.string "description"
+    t.string "description", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "discarded_at"
@@ -133,7 +133,7 @@ ActiveRecord::Schema.define(version: 2022_04_09_004809) do
 
   create_table "sessions", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.datetime "last_used_at", default: "2022-03-27 19:47:42"
+    t.datetime "last_used_at", default: "2022-03-30 15:34:09"
     t.boolean "status", default: true
     t.string "token"
     t.datetime "created_at", precision: 6, null: false

@@ -5,7 +5,7 @@
 # Table name: categories
 #
 #  id           :bigint           not null, primary key
-#  description  :string
+#  description  :string           not null
 #  discarded_at :datetime
 #  name         :string           not null
 #  created_at   :datetime         not null
