@@ -39,6 +39,11 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_storage_validations (0.9.7)
+      activejob (>= 5.2.0)
+      activemodel (>= 5.2.0)
+      activestorage (>= 5.2.0)
+      activesupport (>= 5.2.0)
     activejob (6.1.5)
       activesupport (= 6.1.5)
       globalid (>= 0.3.6)
@@ -247,6 +252,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_storage_validations
   annotate (~> 3.0, >= 3.0.3)
   bootsnap (>= 1.4.4)
   brakeman (~> 5.1, >= 5.1.2)
@@ -277,4 +283,4 @@ RUBY VERSION
    ruby 3.0.2p107
 
 BUNDLED WITH
-   2.3.9
+   2.3.10

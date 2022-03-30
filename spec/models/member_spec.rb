@@ -21,5 +21,12 @@
 require 'rails_helper'
 
 RSpec.describe Member, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject(:member) { build(:member) }
+
+  it { is_expected.to be_valid }
+
+  describe 'validations' do
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_attached_of(:image) }
+  end
 end
