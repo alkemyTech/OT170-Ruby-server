@@ -21,6 +21,7 @@
 class User < ApplicationRecord
   include Discard::Model
 
+  has_secure_password
   has_one_attached :image
 
   validates :first_name, presence: true
