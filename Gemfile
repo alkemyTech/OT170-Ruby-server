@@ -7,6 +7,7 @@ ruby '3.0.2'
 
 gem 'rails', '~> 6.1.5'
 
+gem 'active_storage_validations' # https://github.com/igorkasyanchuk/active_storage_validations
 gem 'bootsnap', '>= 1.4.4', require: false # https://rubygems.org/gems/bootsnap
 gem 'discard', '~> 1.2' # https://rubygems.org/gems/discard
 gem 'dotenv-rails', '~> 2.7', '>= 2.7.6' # https://rubygems.org/gems/dotenv-rails

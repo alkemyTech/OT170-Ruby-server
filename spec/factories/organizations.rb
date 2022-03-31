@@ -14,20 +14,30 @@
 #  welcome_text  :text             not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  slide_id      :bigint
 #
 # Indexes
 #
 #  index_organizations_on_discarded_at  (discarded_at)
 #  index_organizations_on_email         (email) UNIQUE
+#  index_organizations_on_slide_id      (slide_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (slide_id => slides.id)
 #
 FactoryBot.define do
   factory :organization do
-    imagen { nil }
-    name { 'MyString' }
-    address { 'MyString' }
-    phone { 1 }
-    email { 'MyString' }
-    welcomeText { 'MyText' }
-    aboutUsText { 'MyText' }
+    name { Faker::Name.name }
+    address { Faker::Address.full_address }
+    phone { Faker::PhoneNumber.phone_number }
+    email { Faker::Internet.email }
+    welcome_text { Faker::Lorem.paragraph }
+    about_us_text { Faker::Lorem.paragraph }
+
+    after(:build) do |organization|
+      organization.image.attach(io: File.open('spec/fixtures/test_images.jpg'),
+                                filename: 'test_images.jpg', content_type: 'image/jpg')
+    end
   end
 end

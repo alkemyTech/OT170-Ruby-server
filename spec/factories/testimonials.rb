@@ -17,8 +17,12 @@
 #
 FactoryBot.define do
   factory :testimonial do
-    name { 'MyString' }
-    content { 'MyString' }
-    image { nil }
+    name { Faker::Name.name }
+    content { Faker::Lorem.paragraph }
+
+    after(:build) do |testimonial|
+      testimonial.image.attach(io: File.open('spec/fixtures/test_images.jpg'),
+                               filename: 'test_images.jpg', content_type: 'image/jpg')
+    end
   end
 end

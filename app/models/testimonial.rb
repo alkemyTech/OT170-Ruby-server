@@ -16,7 +16,7 @@
 #  index_testimonials_on_discarded_at  (discarded_at)
 #
 class Testimonial < ApplicationRecord
-  include Discard: :Model
+  include Discard::Model
 
   has_one_attached :image
 end

@@ -20,10 +20,15 @@
 #
 FactoryBot.define do
   factory :member do
-    name { 'MyString' }
-    facebook_url { 'MyString' }
-    instagram_url { 'MyString' }
-    linkedin_url { 'MyString' }
-    description { 'MyString' }
+    name { Faker::Name.name }
+    facebook_url { Faker::Internet.url }
+    instagram_url { Faker::Internet.url }
+    linkedin_url { Faker::Internet.url }
+    description { Faker::Lorem.paragraph }
+
+    after(:build) do |member|
+      member.image.attach(io: File.open('spec/fixtures/test_images.jpg'),
+                          filename: 'test_images.jpg', content_type: 'image/jpg')
+    end
   end
 end
