@@ -6,4 +6,8 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  namespace :auth do
+    post 'login', to: 'sessions#create'
+  end
 end
