@@ -8,6 +8,8 @@ Rails.application.routes.draw do
         post '/login', to: 'sessions#create'
       end
 
+      resources :categories, only: :update
+
       resources :organizations, only: :show do
         get 'public', on: :collection
         resources :slides, only: :index

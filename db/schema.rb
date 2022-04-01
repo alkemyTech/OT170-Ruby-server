@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_30_041826) do
+ActiveRecord::Schema.define(version: 2022_03_27_194920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,9 +49,7 @@ ActiveRecord::Schema.define(version: 2022_03_30_041826) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "discarded_at"
-    t.bigint "news_id"
     t.index ["discarded_at"], name: "index_categories_on_discarded_at"
-    t.index ["news_id"], name: "index_categories_on_news_id"
   end
 
   create_table "members", force: :cascade do |t|
@@ -87,10 +85,8 @@ ActiveRecord::Schema.define(version: 2022_03_30_041826) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "discarded_at"
-    t.bigint "slide_id"
     t.index ["discarded_at"], name: "index_organizations_on_discarded_at"
     t.index ["email"], name: "index_organizations_on_email", unique: true
-    t.index ["slide_id"], name: "index_organizations_on_slide_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -102,7 +98,7 @@ ActiveRecord::Schema.define(version: 2022_03_30_041826) do
 
   create_table "sessions", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.datetime "last_used_at", default: "2022-04-03 23:38:11"
+    t.datetime "last_used_at", default: "2022-04-04 01:26:46"
     t.boolean "status", default: true
     t.string "token"
     t.datetime "created_at", precision: 6, null: false
@@ -154,9 +150,7 @@ ActiveRecord::Schema.define(version: 2022_03_30_041826) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "categories", "news"
   add_foreign_key "news", "categories"
-  add_foreign_key "organizations", "slides"
   add_foreign_key "sessions", "users"
   add_foreign_key "slides", "organizations"
   add_foreign_key "user_verifications", "users"
