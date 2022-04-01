@@ -13,6 +13,11 @@ module Api
         end
       end
 
+      def destroy
+        @category.discard
+        head :no_content
+      end
+
       private
 
       def set_category
