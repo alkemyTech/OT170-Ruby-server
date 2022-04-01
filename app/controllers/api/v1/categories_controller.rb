@@ -3,7 +3,12 @@
 module Api
   module V1
     class CategoriesController < ApplicationController
-      before_action :set_category, only: %i[update destroy]
+      before_action :set_category, only: %i[show update destroy]
+
+      def show
+        @category = Category.find(params[:id])
+        render json: { data: @category }, status: :ok
+      end
 
       def create
         @category = Category.new(category_params)
