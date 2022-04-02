@@ -8,7 +8,11 @@ module Api
       def create
         @category = Category.new(category_params)
         if @category.save
-          render json: @category, status: :created, location: @category
+          render json: CategorySerializer.new(@category).serializable_hash, status: :created
+        else
+          render json: @category.errors, status: :unprocessable_entity
+        end
+      end
 
       def update
         if @category.update(category_params)
