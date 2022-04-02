@@ -15,7 +15,7 @@ Rails.application.routes.draw do
         resources :slides, only: :index
       end
 
-      resources :users, only: :destroy
+      resources :users, only: %i[index destroy]
     end
   end
 end

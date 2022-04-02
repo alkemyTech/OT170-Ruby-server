@@ -3,9 +3,13 @@
 module Api
   module V1
     class UsersController < ApplicationController
-      before_action :set_user
+      before_action :set_user, only: %i[index destroy]
 
-      # DELETE /users/:id
+      def index
+        @users = User.all
+        render json: UserSerializer.new(@users).seriarizable_hash
+      end
+
       def destroy
         @user.discard
         head :no_content
@@ -13,7 +17,6 @@ module Api
 
       private
 
-      # Set user instance
       def set_user
         @user = User.find(params[:id])
       end
