@@ -6,8 +6,11 @@ module Api
       before_action :set_category, only: %i[show update destroy]
 
       def show
-        @category = Category.find(params[:id])
-        render json: { data: @category }, status: :ok
+        if @category
+          render json: CategorySerializer.new(@category).seriarizable_hash, status: :ok
+        else
+          render_error
+        end
       end
 
       def create
@@ -40,6 +43,10 @@ module Api
 
       def category_params
         params.require(:category).permit(:image, :name, :description)
+      end
+
+      def render_error
+        render json: { errors: @category.errors.full_messages }, status: :not_found
       end
     end
   end
