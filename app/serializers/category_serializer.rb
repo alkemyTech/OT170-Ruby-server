@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 # frozen_string_literal: true
 
-=======
->>>>>>> bc85b0d (feat/0T171-41-endpoint-detail-category)
 # == Schema Information
 #
 # Table name: categories
@@ -17,13 +14,14 @@
 # Indexes
 #
 #  index_categories_on_discarded_at  (discarded_at)
+#  index_categories_on_news_id       (news_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (news_id => news.id)
 #
 class CategorySerializer
   include JSONAPI::Serializer
-<<<<<<< HEAD
-  attributes :name, :description
-=======
-
+  attributes :name
   attributes :image, :name, :description
->>>>>>> bc85b0d (feat/0T171-41-endpoint-detail-category)
 end
