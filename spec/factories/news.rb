@@ -23,8 +23,13 @@
 #
 FactoryBot.define do
   factory :news do
+    category
     name { Faker::Name.name_with_middle }
     content { Faker::Lorem.sentence }
-    image { Rack::Test::UploadedFile.new('path', 'image/png') }
+
+    after(:build) do |news|
+      news.image.attach(io: File.open('spec/fixtures/test_images.jpg'),
+                        filename: 'test_images.jpg', content_type: 'image/jpg')
+    end
   end
 end

@@ -4,14 +4,14 @@
 #
 # Table name: users
 #
-#  id           :bigint           not null, primary key
-#  discarded_at :datetime
-#  email        :string           not null
-#  first_name   :string           not null
-#  last_name    :string           not null
-#  password     :string           not null
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id              :bigint           not null, primary key
+#  discarded_at    :datetime
+#  email           :string           not null
+#  first_name      :string           not null
+#  last_name       :string           not null
+#  password_digest :string           not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 # Indexes
 #
@@ -21,7 +21,10 @@
 class User < ApplicationRecord
   include Discard::Model
 
+  has_secure_password
   has_one_attached :image
+
+  has_many :sessions, dependent: :destroy
 
   validates :first_name, presence: true
   validates :last_name, presence: true
