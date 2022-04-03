@@ -29,6 +29,7 @@
 class Organization < ApplicationRecord
   include Discard::Model
   has_many :slides, dependent: :destroy
+  has_many :slides, dependent: :destroy
 
   has_one_attached :image
 
