@@ -93,9 +93,16 @@ ActiveRecord::Schema.define(version: 2022_03_30_041826) do
     t.index ["slide_id"], name: "index_organizations_on_slide_id"
   end
 
+  create_table "roles", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.datetime "last_used_at", default: "2022-04-03 22:28:59"
+    t.datetime "last_used_at", default: "2022-04-03 22:44:30"
     t.boolean "status", default: true
     t.string "token"
     t.datetime "created_at", precision: 6, null: false
@@ -139,8 +146,10 @@ ActiveRecord::Schema.define(version: 2022_03_30_041826) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "discarded_at"
+    t.bigint "role_id", null: false
     t.index ["discarded_at"], name: "index_users_on_discarded_at"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["role_id"], name: "index_users_on_role_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -151,4 +160,5 @@ ActiveRecord::Schema.define(version: 2022_03_30_041826) do
   add_foreign_key "sessions", "users"
   add_foreign_key "slides", "organizations"
   add_foreign_key "user_verifications", "users"
+  add_foreign_key "users", "roles"
 end
