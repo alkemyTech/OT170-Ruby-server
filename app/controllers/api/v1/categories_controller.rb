@@ -3,7 +3,16 @@
 module Api
   module V1
     class CategoriesController < ApplicationController
-      before_action :set_category
+      before_action :set_category, only: %i[update destroy]
+
+      def create
+        @category = Category.new(category_params)
+        if @category.save
+          render json: CategorySerializer.new(@category).serializable_hash, status: :created
+        else
+          render json: @category.errors, status: :unprocessable_entity
+        end
+      end
 
       def update
         if @category.update(category_params)
@@ -25,7 +34,7 @@ module Api
       end
 
       def category_params
-        params.require(:category).permit(:name, :description)
+        params.require(:category).permit(:image, :name, :description)
       end
     end
   end
