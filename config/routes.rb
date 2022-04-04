@@ -8,7 +8,7 @@ Rails.application.routes.draw do
         post '/login', to: 'sessions#create'
       end
 
-      resources :categories, only: %i[show create update destroy]
+      resources :categories, only: %i[index show create update destroy]
 
       resources :organizations, only: :show do
         get 'public', on: :collection

@@ -5,6 +5,11 @@ module Api
     class CategoriesController < ApplicationController
       before_action :set_category, only: %i[show update destroy]
 
+      def index
+        @category = Category.all
+        render json: CategorySerializer.new(@category).serializable_hash
+      end
+
       def show
         if @category
           render json: CategorySerializer.new(@category).seriarizable_hash, status: :ok
