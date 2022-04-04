@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       end
 
       resources :categories, only: %i[index show create update destroy]
-
+      resources :news, only: :update
       resources :organizations, only: :show do
         get 'public', on: :collection
         resources :slides, only: :index

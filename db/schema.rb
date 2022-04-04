@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 2022_03_27_194920) do
 
   create_table "sessions", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.datetime "last_used_at", default: "2022-04-04 01:26:46"
+    t.datetime "last_used_at", default: "2022-04-10 23:16:38"
     t.boolean "status", default: true
     t.string "token"
     t.datetime "created_at", precision: 6, null: false
@@ -124,7 +124,6 @@ ActiveRecord::Schema.define(version: 2022_03_27_194920) do
     t.index ["discarded_at"], name: "index_testimonials_on_discarded_at"
   end
 
-<<<<<<< HEAD
   create_table "user_verifications", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "status", default: "pending"
@@ -133,18 +132,6 @@ ActiveRecord::Schema.define(version: 2022_03_27_194920) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_user_verifications_on_user_id"
-=======
-  create_table "userdevises", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_userdevises_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_userdevises_on_reset_password_token", unique: true
->>>>>>> bc85b0d (feat/0T171-41-endpoint-detail-category)
   end
 
   create_table "users", force: :cascade do |t|
