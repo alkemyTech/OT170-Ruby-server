@@ -22,6 +22,6 @@
 #
 class CategorySerializer
   include JSONAPI::Serializer
-  attributes :name
+  
   attributes :image, :name, :description
 end
