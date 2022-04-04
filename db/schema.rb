@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_04_205905) do
+ActiveRecord::Schema.define(version: 2022_04_06_213955) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 2022_04_04_205905) do
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "discarded_at"
     t.bigint "category_id", null: false
+    t.string "news_type"
     t.index ["category_id"], name: "index_news_on_category_id"
     t.index ["discarded_at"], name: "index_news_on_discarded_at"
   end
@@ -107,7 +108,7 @@ ActiveRecord::Schema.define(version: 2022_04_04_205905) do
 
   create_table "sessions", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.datetime "last_used_at", default: "2022-04-11 00:21:45"
+    t.datetime "last_used_at", default: "2022-04-11 01:57:10"
     t.boolean "status", default: true
     t.string "token"
     t.datetime "created_at", precision: 6, null: false

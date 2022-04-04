@@ -1,11 +1,9 @@
-# frozen_string_literal: true
-
 # == Schema Information
 #
-# Table name: categories
+# Table name: activities
 #
 #  id           :bigint           not null, primary key
-#  description  :string
+#  content      :string           not null
 #  discarded_at :datetime
 #  name         :string           not null
 #  created_at   :datetime         not null
@@ -13,10 +11,10 @@
 #
 # Indexes
 #
-#  index_categories_on_discarded_at  (discarded_at)
+#  index_activities_on_discarded_at  (discarded_at)
 #
-class CategorySerializer
+class ActivitySerializer
   include JSONAPI::Serializer
-
-  attributes :image, :name, :description
+  
+  attributes :image, :name, :content
 end
