@@ -3,14 +3,14 @@
 Rails.application.routes.draw do
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do
-        post '/organizations/public', to: 'organizations#create'
+      post '/organizations/public', to: 'organizations#create'
       namespace :auth do
         post '/register', to: 'registrations#create'
         post '/login', to: 'sessions#create'
       end
 
       resources :categories, only: %i[index show create update destroy]
-      resources :news, only: %i[update destroy]
+      resources :news, only: %i[show update destroy]
       resources :organizations, only: :show do
         get 'public', on: :collection
         resources :slides, only: :index

@@ -3,7 +3,15 @@
 module Api
   module V1
     class NewsController < ApplicationController
-      before_action :set_news, only: %i[update destroy]
+      before_action :set_news, only: %i[show update destroy]
+
+      def show
+        if @new
+          render json: NewSerializer.new(@new).seriarizable_hash, status: :ok
+        else
+          render_error
+        end
+      end
 
       def update
         if @news.update(news_params)
@@ -29,6 +37,10 @@ module Api
 
       def news_params
         params.require(:news).permit(:image, :name, :content, :category_id)
+      end
+
+      def render_error
+        render json: { errors: @new.errors.full_messages }, status: :not_found
       end
     end
   end
