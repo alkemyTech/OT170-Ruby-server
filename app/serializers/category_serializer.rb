@@ -15,12 +15,7 @@
 #
 #  index_categories_on_discarded_at  (discarded_at)
 #
-class Category < ApplicationRecord
-  include Discard::Model
-
-  has_one_attached :image
-
-  belongs_to :news, optional: true
-
-  validates :name, presence: true
+class CategorySerializer
+  include JSONAPI::Serializer
+  attributes :name, :description
 end
