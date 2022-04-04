@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 # frozen_string_literal: true
 
+=======
+>>>>>>> bc85b0d (feat/0T171-41-endpoint-detail-category)
 # == Schema Information
 #
 # Table name: categories
@@ -17,5 +20,10 @@
 #
 class CategorySerializer
   include JSONAPI::Serializer
+<<<<<<< HEAD
   attributes :name, :description
+=======
+
+  attributes :image, :name, :description
+>>>>>>> bc85b0d (feat/0T171-41-endpoint-detail-category)
 end

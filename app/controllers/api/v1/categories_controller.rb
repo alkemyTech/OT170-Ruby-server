@@ -3,7 +3,15 @@
 module Api
   module V1
     class CategoriesController < ApplicationController
-      before_action :set_category, only: %i[update destroy]
+      before_action :set_category, only: %i[show update destroy]
+
+      def show
+        if @category
+          render json: CategorySerializer.new(@category).seriarizable_hash, status: :ok
+        else
+          render_error
+        end
+      end
 
       def create
         @category = Category.new(category_params)
@@ -35,6 +43,10 @@ module Api
 
       def category_params
         params.require(:category).permit(:image, :name, :description)
+      end
+
+      def render_error
+        render json: { errors: @category.errors.full_messages }, status: :not_found
       end
     end
   end
