@@ -3,13 +3,21 @@
 module Api
   module V1
     class NewsController < ApplicationController
-      before_action :set_news, only: %i[update]
+      before_action :set_news, only: %i[update destroy]
 
       def update
         if @news.update(news_params)
           render json: NewSerializer.new(@news).serializable_hash, status: :ok
         else
           render json: @news.errors, status: :unprocessable_entity
+        end
+      end
+
+      def destroy
+        if @news.discarded?
+          @news.destroy
+        else
+          @news.discard
         end
       end
 
