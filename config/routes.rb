@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
       resources :users, only: %i[index destroy]
 
-      resources :news, only: %i[show]
+      resources :news, only: %i[show create]
     end
   end
 end
