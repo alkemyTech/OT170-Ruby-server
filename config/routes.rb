@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       end
 
       resources :categories, only: %i[index show create update destroy]
+      resources :activities, only: %i[index show create update destroy]
 
       resources :news, only: %i[show create update destroy]
 
