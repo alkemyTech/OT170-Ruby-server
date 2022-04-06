@@ -5,6 +5,7 @@
 # Table name: slides
 #
 #  id              :bigint           not null, primary key
+#  discarded_at    :datetime
 #  order           :integer          not null
 #  text            :text             not null
 #  created_at      :datetime         not null
@@ -13,6 +14,7 @@
 #
 # Indexes
 #
+#  index_slides_on_discarded_at     (discarded_at)
 #  index_slides_on_organization_id  (organization_id)
 #
 # Foreign Keys

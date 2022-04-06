@@ -3,7 +3,7 @@
 module Api
   module V1
     class SlidesController < ApplicationController
-      before_action :set_slide, only: %i[update]
+      before_action :set_slide, only: %i[update destroy]
 
       def index
         @organization = Organization.find(params[:organization_id])
@@ -19,6 +19,14 @@ module Api
         end
       end
 
+      def destroy
+        if @slide.discarded?
+          @slide.destroy
+        else
+          @slide.discard
+        end
+      end
+
       private
 
       def set_slide
@@ -27,7 +35,7 @@ module Api
 
       def slide_params
         params.require(:slide).permit(:image, :text, :order, :organization_id)
-      end
+      end 
     end
   end
 end

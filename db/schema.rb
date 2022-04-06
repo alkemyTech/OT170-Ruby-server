@@ -122,6 +122,8 @@ ActiveRecord::Schema.define(version: 2022_04_06_213955) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "organization_id", null: false
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_slides_on_discarded_at"
     t.index ["organization_id"], name: "index_slides_on_organization_id"
   end
 
