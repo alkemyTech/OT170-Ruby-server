@@ -10,6 +10,7 @@
 #  name         :string           not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  news_id      :bigint
 #
 # Indexes
 #
