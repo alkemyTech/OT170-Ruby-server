@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do
-        post '/organizations/public', to: 'organizations#create'
+      post '/organizations/public', to: 'organizations#create'
       namespace :auth do
         post '/register', to: 'registrations#create'
         post '/login', to: 'sessions#create'
@@ -20,6 +20,8 @@ Rails.application.routes.draw do
       end
 
       resources :users, only: %i[index destroy]
+
+      resources :contacts, only: %i[create]
     end
   end
 end
