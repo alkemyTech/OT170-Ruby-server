@@ -15,8 +15,8 @@
 #
 FactoryBot.define do
   factory :activity do
-    name { "MyString" }
+    name { 'MyString' }
     image { nil }
-    content { "MyString" }
+    content { 'MyString' }
   end
 end
