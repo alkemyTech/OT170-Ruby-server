@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_27_194920) do
+ActiveRecord::Schema.define(version: 2022_04_04_205905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,15 @@ ActiveRecord::Schema.define(version: 2022_03_27_194920) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "activities", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "content", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_activities_on_discarded_at"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -98,7 +107,7 @@ ActiveRecord::Schema.define(version: 2022_03_27_194920) do
 
   create_table "sessions", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.datetime "last_used_at", default: "2022-04-10 23:16:38"
+    t.datetime "last_used_at", default: "2022-04-11 00:21:45"
     t.boolean "status", default: true
     t.string "token"
     t.datetime "created_at", precision: 6, null: false
