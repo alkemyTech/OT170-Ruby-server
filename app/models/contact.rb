@@ -21,7 +21,5 @@ class Contact < ApplicationRecord
   include Discard::Model
 
   validates :name, presence: true
-  validates :phone, presence: true
   validates :email, presence: true
-  validates :message, presence: true
 end
