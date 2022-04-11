@@ -3,12 +3,20 @@
 module Api
   module V1
     class SlidesController < ApplicationController
-      before_action :set_slide, only: %i[update destroy]
+      before_action :set_slide, only: %i[show update destroy]
 
       def index
         @organization = Organization.find(params[:organization_id])
         @slides = @organization.slides.all
         render json: SlideSerializer.new(@slides).serializable_hash
+      end
+
+      def show
+        if @slide
+          render json: SlideSerializer.new(@slide).serializable_hash
+        else
+          render_error
+        end
       end
 
       def update
@@ -34,8 +42,12 @@ module Api
       end
 
       def slide_params
-        params.require(:slide).permit(:image, :text, :order, :organization_id)
-      end 
+        params.require(:slide).permit(:image, :name, :description)
+      end
+
+      def render_error
+        render json: { errors: @slide.errors.full_messages }, status: :not_found
+      end
     end
   end
 end
