@@ -21,5 +21,5 @@
 #
 class SlideSerializer
   include JSONAPI::Serializer
-  attributes :image, :order
+  attributes :image, :order, :organization_id
 end
