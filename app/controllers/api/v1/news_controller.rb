@@ -13,6 +13,16 @@ module Api
         end
       end
 
+      def create
+        @news = News.new(news_params)
+        @news.news_type = 'news'
+        if @news.save
+          render json: NewsSerializer.new(@new).serializable_hash, status: :created
+        else
+          render json: @news.errors, status: :unprocessable_entity
+        end
+      end
+
       def update
         if @news.update(news_params)
           render json: NewSerializer.new(@news).serializable_hash, status: :ok
@@ -40,7 +50,7 @@ module Api
       end
 
       def render_error
-        render json: { errors: @new.errors.full_messages }, status: :not_found
+        render json: { errors: @news.errors.full_messages }, status: :not_found
       end
     end
   end
