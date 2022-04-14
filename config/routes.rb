@@ -13,7 +13,7 @@ Rails.application.routes.draw do
       resources :activities, only: %i[index show create update destroy]
 
       resources :news, only: %i[show create update destroy]
-      
+
       resources :organizations, only: :show do
         get 'public', on: :collection
         resources :slides, only: %i[index update destroy]
@@ -22,6 +22,8 @@ Rails.application.routes.draw do
       resources :users, only: %i[index destroy]
 
       resources :contacts, only: %i[create]
+
+      resources :members, only: %i[index show create update destroy]
     end
   end
 end
