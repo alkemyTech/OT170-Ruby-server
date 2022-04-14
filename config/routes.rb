@@ -10,8 +10,8 @@ Rails.application.routes.draw do
       end
 
       resources :categories, only: %i[index show create update destroy]
+      resources :contacts, only: %i[create]
       resources :activities, only: %i[index show create update destroy]
-
       resources :news, only: %i[show create update destroy]
 
       resources :organizations, only: :show do
@@ -20,10 +20,8 @@ Rails.application.routes.draw do
       end
 
       resources :slides, only: %i[show update destroy]
-
       resources :users, only: %i[index destroy]
-
-      resources :contacts, only: %i[index create]
+      resources :members, only: %i[index show create update destroy]
     end
   end
 end
