@@ -28,5 +28,5 @@
 #
 class OrganizationSerializer
   include JSONAPI::Serializer
-  attributes :name, :image, :phone, :address
+  attributes :name, :image, :phone, :address, :organization_slides
 end
