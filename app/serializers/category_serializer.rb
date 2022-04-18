@@ -15,6 +15,11 @@
 # Indexes
 #
 #  index_categories_on_discarded_at  (discarded_at)
+#  index_categories_on_news_id       (news_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (news_id => news.id)
 #
 class CategorySerializer
   include JSONAPI::Serializer
