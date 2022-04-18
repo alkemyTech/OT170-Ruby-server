@@ -12,11 +12,17 @@
 #  password_digest :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  role_id         :bigint           not null
 #
 # Indexes
 #
 #  index_users_on_discarded_at  (discarded_at)
 #  index_users_on_email         (email) UNIQUE
+#  index_users_on_role_id       (role_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (role_id => roles.id)
 #
 class User < ApplicationRecord
   include Discard::Model
@@ -25,6 +31,7 @@ class User < ApplicationRecord
   has_one_attached :image
 
   has_many :sessions, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   validates :first_name, presence: true
   validates :last_name, presence: true

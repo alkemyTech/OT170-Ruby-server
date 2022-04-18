@@ -12,7 +12,11 @@ Rails.application.routes.draw do
       resources :categories, only: %i[index show create update destroy]
       resources :activities, only: %i[index show create update destroy]
 
-      resources :news, only: %i[show create update destroy]
+      resources :news, only: %i[show create update destroy] do
+        resources :comments, only: %i[show create]
+      end
+
+      resources :comments, only: %i[index update destroy]
 
       resources :organizations, only: :show do
         get 'public', on: :collection
