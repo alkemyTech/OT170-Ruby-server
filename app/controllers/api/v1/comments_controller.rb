@@ -6,8 +6,16 @@ module Api
       before_action :set_comment, only: %i[show update destroy]
 
       def index
-        @comment = Comment.order(creation_at: desc)
-        render json: CommentSerializer.new(@comment).serializable_hash
+
+          if params[:news_id]
+            news = News.find(params[:news_id])
+            comments = news.comments
+            render json: CommentSerializer.new(comments).serializable_hash
+          else
+            @comment = Comment.order(created_at: :desc)
+            render json: CommentSerializer.new(@comment).serializable_hash
+          end
+
       end
 
       def show
@@ -34,10 +42,16 @@ module Api
 
       def update
         @comment.discarded_at = nil
-        if @comment.update(comment_params)
-          render json: CommentSerializer.new(@comment).serializable_hash
+        if current_user.id == @comment.user_id
+          if @comment.update(comment_params)
+            render json: CommentSerializer.new(@comment).serializable_hash
+          else
+            render json: @comment.errors, status: :unprocessable_entity
+          end
         else
-          render json: @comment.errors, status: :unprocessable_entity
+          render status: :unauthorized, json: {
+            errors: [I18n.t('errors.controllers.unauthorized')]
+          }
         end
       end
 
@@ -47,7 +61,7 @@ module Api
           head :no_content
         else
           render status: :unauthorized, json: {
-            errors: [I18n.t('errors.controllers.auth.unauthenticated')]
+            errors: [I18n.t('errors.controllers.unauthorized')]
           }
         end
       end

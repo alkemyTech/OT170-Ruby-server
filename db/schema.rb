@@ -64,12 +64,12 @@ ActiveRecord::Schema.define(version: 2022_04_15_223157) do
   create_table "comments", force: :cascade do |t|
     t.text "body"
     t.bigint "user_id", null: false
-    t.bigint "new_id", null: false
+    t.bigint "news_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "discarded_at"
     t.index ["discarded_at"], name: "index_comments_on_discarded_at"
-    t.index ["new_id"], name: "index_comments_on_new_id"
+    t.index ["news_id"], name: "index_comments_on_news_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -129,9 +129,16 @@ ActiveRecord::Schema.define(version: 2022_04_15_223157) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "rols", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.datetime "last_used_at", default: "2022-04-19 20:54:53"
+    t.datetime "last_used_at", default: "2022-04-19 21:22:27"
     t.boolean "status", default: true
     t.string "token"
     t.datetime "created_at", precision: 6, null: false
@@ -185,7 +192,7 @@ ActiveRecord::Schema.define(version: 2022_04_15_223157) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "comments", "news", column: "new_id"
+  add_foreign_key "comments", "news"
   add_foreign_key "comments", "users"
   add_foreign_key "news", "categories"
   add_foreign_key "sessions", "users"
