@@ -3,7 +3,7 @@
 module Api
   module V1
     class NewsController < ApplicationController
-      skip_before_action :authenticate_user!
+      #skip_before_action :authenticate_user!
       before_action :set_news, only: %i[show update destroy]
       
       def show
@@ -33,11 +33,8 @@ module Api
       end
 
       def destroy
-        if @news.discarded?
-          @news.destroy
-        else
-          @news.discard
-        end
+        @news.discard
+        head :no_content
       end
 
       private
