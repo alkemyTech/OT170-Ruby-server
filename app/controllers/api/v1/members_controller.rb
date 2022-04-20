@@ -3,10 +3,12 @@
 module Api
   module V1
     class MembersController < ApplicationController
+      skip_before_action :authenticate_user!, only: %i[index]
       before_action :set_member, only: %i[show update destroy]
+      after_action { pagy_headers_merge(@pagy) if @pagy }
 
       def index
-        @member = Member.all
+        @pagy, @member = pagy(Member.all, page: params[:page] || 1)
         render json: MemberSerializer.new(@member).serializable_hash
       end
 
