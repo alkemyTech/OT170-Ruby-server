@@ -59,7 +59,6 @@ ActiveRecord::Schema.define(version: 2022_04_15_223157) do
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "discarded_at"
     t.index ["discarded_at"], name: "index_categories_on_discarded_at"
-
   end
 
   create_table "comments", force: :cascade do |t|
@@ -72,7 +71,6 @@ ActiveRecord::Schema.define(version: 2022_04_15_223157) do
     t.index ["discarded_at"], name: "index_comments_on_discarded_at"
     t.index ["news_id"], name: "index_comments_on_news_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
-
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -140,7 +138,7 @@ ActiveRecord::Schema.define(version: 2022_04_15_223157) do
 
   create_table "sessions", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.datetime "last_used_at", default: "2022-04-19 21:22:27"
+    t.datetime "last_used_at", default: "2022-04-20 15:37:26"
     t.boolean "status", default: true
     t.string "token"
     t.datetime "created_at", precision: 6, null: false
