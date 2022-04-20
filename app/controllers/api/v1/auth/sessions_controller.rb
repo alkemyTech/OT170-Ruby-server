@@ -4,6 +4,7 @@ module Api
   module V1
     module Auth
       class SessionsController < ApplicationController
+        skip_before_action :authenticate_user!
         include CreateSession
 
         def create

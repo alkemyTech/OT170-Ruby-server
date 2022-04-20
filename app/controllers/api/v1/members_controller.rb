@@ -7,8 +7,7 @@ module Api
 
       def index
         @member = Member.all
-        # render json: MemberSerializer.new(@member).serializable_hash
-        render json: current_user.id
+        render json: MemberSerializer.new(@member).serializable_hash
       end
 
       def show
