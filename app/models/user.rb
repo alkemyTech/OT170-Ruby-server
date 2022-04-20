@@ -31,6 +31,9 @@ class User < ApplicationRecord
   has_one_attached :image
 
   has_many :sessions, dependent: :destroy
+  has_many :comments, dependent: :destroy
+
+  belongs_to :role
 
   validates :first_name, presence: true
   validates :last_name, presence: true

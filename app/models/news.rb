@@ -27,6 +27,7 @@ class News < ApplicationRecord
 
   has_one_attached :image
   has_one :category, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   validates :name, presence: true
   validates :content, presence: true
