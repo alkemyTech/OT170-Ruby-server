@@ -12,7 +12,7 @@ module Api
 
       def show
         if @category
-          render json: CategorySerializer.new(@category).seriarizable_hash, status: :ok
+          render json: CategorySerializer.new(@category).serializable_hash, status: :ok
         else
           render_error
         end

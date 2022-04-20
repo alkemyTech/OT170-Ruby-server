@@ -24,5 +24,6 @@
 #
 class NewsSerializer
   include JSONAPI::Serializer
+  
   attributes :image, :name, :content, :news_type
 end
