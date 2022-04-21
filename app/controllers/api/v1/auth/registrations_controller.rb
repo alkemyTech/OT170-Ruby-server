@@ -4,10 +4,12 @@ module Api
   module V1
     module Auth
       class RegistrationsController < ApplicationController
+        skip_before_action :authenticate_user!
         include CreateSession
 
         def create
           @user = User.new(registration_params)
+          @user.role = Role.create_or_find_by(name: 'user')
 
           @user.save ? success_user_created : error_user_save
         end

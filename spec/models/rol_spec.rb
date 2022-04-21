@@ -8,9 +8,8 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
-FactoryBot.define do
-  factory :rol do
-    name { "MyString" }
-    description { "MyString" }
-  end
+require 'rails_helper'
+
+RSpec.describe Rol, type: :model do
+  pending "add some examples to (or delete) #{__FILE__}"
 end
