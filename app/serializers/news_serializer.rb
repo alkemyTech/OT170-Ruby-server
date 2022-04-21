@@ -24,7 +24,8 @@
 #
 class NewsSerializer
   include JSONAPI::Serializer
+  
   attributes :image, :name, :content, :news_type
   has_many :comments
-  belongs_to :user
+  
 end

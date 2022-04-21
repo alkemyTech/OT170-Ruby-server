@@ -3,9 +3,9 @@
 module Api
   module V1
     class NewsController < ApplicationController
-      skip_before_action :authenticate_user!
+      #skip_before_action :authenticate_user!
       before_action :set_news, only: %i[show update destroy]
-
+      
       def show
         if @news
           render json: NewsSerializer.new(@news).serializable_hash, status: :ok
@@ -26,18 +26,15 @@ module Api
 
       def update
         if @news.update(news_params)
-          render json: NewSerializer.new(@news).serializable_hash, status: :ok
+          render json: NewsSerializer.new(@news).serializable_hash, status: :ok
         else
           render json: @news.errors, status: :unprocessable_entity
         end
       end
 
       def destroy
-        if @news.discarded?
-          @news.destroy
-        else
-          @news.discard
-        end
+        @news.discard
+        head :no_content
       end
 
       private
