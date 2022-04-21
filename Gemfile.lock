@@ -277,6 +277,7 @@ DEPENDENCIES
   pry-byebug (~> 3.9)
   pry-rails (~> 0.3.9)
   puma (~> 5.0)
+  rack (~> 2.2, >= 2.2.3)
   rails (~> 6.1.5)
   rails_best_practices (~> 1.20)
   rspec-rails (~> 4.1)
