@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       post '/organizations/public', to: 'organizations#create'
       namespace :auth do
         post '/register', to: 'registrations#create'
-        post '/login', to: 'sessions#create'
+        post '/login', to: 'sessions#create', as: 'login'
       end
 
       resources :categories, only: %i[index show create update destroy]

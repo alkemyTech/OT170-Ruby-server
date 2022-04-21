@@ -27,5 +27,9 @@
 class UserSerializer
   include JSONAPI::Serializer
 
-  attributes :first_name, :last_name, :email, :created_at, :updated_at
+  attributes :first_name, :last_name, :email
+  attribute :role do |object|
+    object.role.description
+  end
+  belongs_to :role
 end

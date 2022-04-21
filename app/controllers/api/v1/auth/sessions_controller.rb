@@ -26,7 +26,7 @@ module Api
           response.headers['Authorization'] = "Bearer #{@token}"
           render status: :created, json: {
             token: @token,
-            user: @user
+            user: UserSerializer.new(@user).serializable_hash
           }
         end
 
