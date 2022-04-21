@@ -17,7 +17,7 @@
 #
 FactoryBot.define do
   factory :category do
-    name { 'MyString' }
-    title { 'MyString' }
+    name { Faker::Name.name_with_middle }
+    description { Faker::Lorem.sentence }
   end
 end

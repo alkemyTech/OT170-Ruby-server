@@ -18,5 +18,15 @@
 require 'rails_helper'
 
 RSpec.describe Category, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject(:category) { build(:category) }
+
+  it { is_expected.to be_valid }
+
+  describe 'validations' do
+    it { is_expected.to validate_presence_of(:name) }
+  end
+
+  describe 'associations' do
+    it { is_expected.to belong_to(:news).optional }
+  end
 end

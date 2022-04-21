@@ -22,8 +22,14 @@
 #
 class Organization < ApplicationRecord
   include Discard::Model
+  has_many :slides, dependent: :destroy
+  has_many :slides, dependent: :destroy
 
   has_one_attached :image
+
+  def organization_slides
+    slides.order(:order)
+  end
 
   validates :name, presence: true
   validates :email, presence: true,

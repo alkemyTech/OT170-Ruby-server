@@ -7,10 +7,15 @@ ruby '3.0.2'
 
 gem 'rails', '~> 6.1.5'
 
+gem 'active_storage_validations' # https://github.com/igorkasyanchuk/active_storage_validations
+gem 'bcrypt', '~> 3.1.7' # https://github.com/bcrypt-ruby/bcrypt-ruby
 gem 'bootsnap', '>= 1.4.4', require: false # https://rubygems.org/gems/bootsnap
 gem 'discard', '~> 1.2' # https://rubygems.org/gems/discard
 gem 'dotenv-rails', '~> 2.7', '>= 2.7.6' # https://rubygems.org/gems/dotenv-rails
+gem 'jbuilder', '~> 2.11', '>= 2.11.5' # https://rubygems.org/gems/jbuilder
 gem 'jsonapi-serializer', '~> 2.2' # https://rubygems.org/gems/jsonapi-serializer
+gem 'jwt', '~> 2.3' # https://rubygems.org/gems/jwt
+gem 'pagy', '~> 5.10'
 gem 'pg', '~> 1.1' # https://rubygems.org/gems/pg
 gem 'puma', '~> 5.0' # https://rubygems.org/gems/puma
 # gem 'rack-cors' # https://rubygems.org/gems/rack-cors

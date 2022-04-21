@@ -23,5 +23,17 @@
 require 'rails_helper'
 
 RSpec.describe Organization, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject(:organization) { build(:organization) }
+
+  it { is_expected.to be_valid }
+
+  describe 'validations' do
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_presence_of(:email) }
+    it { is_expected.to validate_presence_of(:welcome_text) }
+  end
+
+  describe 'associations' do
+    it { is_expected.to have_many(:slides).dependent(:destroy) }
+  end
 end

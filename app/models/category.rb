@@ -20,5 +20,7 @@ class Category < ApplicationRecord
 
   has_one_attached :image
 
+  belongs_to :news, optional: true
+
   validates :name, presence: true
 end

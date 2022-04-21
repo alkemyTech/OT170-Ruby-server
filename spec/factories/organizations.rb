@@ -22,12 +22,16 @@
 #
 FactoryBot.define do
   factory :organization do
-    imagen { nil }
-    name { 'MyString' }
-    address { 'MyString' }
-    phone { 1 }
-    email { 'MyString' }
-    welcomeText { 'MyText' }
-    aboutUsText { 'MyText' }
+    name { Faker::Name.name }
+    address { Faker::Address.full_address }
+    phone { Faker::PhoneNumber.phone_number }
+    email { Faker::Internet.email }
+    welcome_text { Faker::Lorem.paragraph }
+    about_us_text { Faker::Lorem.paragraph }
+
+    after(:build) do |organization|
+      organization.image.attach(io: File.open('spec/fixtures/test_images.jpg'),
+                                filename: 'test_images.jpg', content_type: 'image/jpg')
+    end
   end
 end

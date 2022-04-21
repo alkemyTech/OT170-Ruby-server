@@ -5,6 +5,7 @@
 # Table name: slides
 #
 #  id              :bigint           not null, primary key
+#  discarded_at    :datetime
 #  order           :integer          not null
 #  text            :text             not null
 #  created_at      :datetime         not null
@@ -13,6 +14,7 @@
 #
 # Indexes
 #
+#  index_slides_on_discarded_at     (discarded_at)
 #  index_slides_on_organization_id  (organization_id)
 #
 # Foreign Keys
@@ -22,5 +24,16 @@
 require 'rails_helper'
 
 RSpec.describe Slide, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject(:slide) { build(:slide) }
+
+  it { is_expected.to be_valid }
+
+  describe 'validations' do
+    it { is_expected.to validate_presence_of(:text) }
+    it { is_expected.to validate_presence_of(:order) }
+  end
+
+  describe 'associations' do
+    it { is_expected.to belong_to(:organization) }
+  end
 end

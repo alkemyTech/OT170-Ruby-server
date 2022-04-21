@@ -8,6 +8,7 @@
 #  content      :string           not null
 #  discarded_at :datetime
 #  name         :string           not null
+#  news_type    :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  category_id  :bigint           not null
@@ -24,19 +25,17 @@
 require 'rails_helper'
 
 RSpec.describe News, type: :model do
-  let(:news) { build(:news) }
+  subject(:news) { build(:news) }
 
-  it 'has a valid factory' do
-    expect(build(:category)).to be_valid
-  end
+  it { is_expected.to be_valid }
 
   describe 'validations' do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:content) }
-    it { is_expected.to validate_attachment_presence(:image) }
+    it { is_expected.to validate_attached_of(:image) }
   end
 
   describe 'associations' do
-    it { is_expected.to belong_to(:category).required }
+    it { is_expected.to have_one(:category).dependent(:destroy) }
   end
 end

@@ -30,4 +30,13 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  messages:
+    controllers:
+      auth:
+        logout: "User logged out"
+  errors:
+    controllers:
+      unauthorized: "You don't have necessary credentials"
+      auth:
+        unauthenticated: "You must be signed in to access this page."
+        invalid_credentials: "Invalid credentials"
