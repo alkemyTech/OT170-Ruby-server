@@ -129,16 +129,9 @@ ActiveRecord::Schema.define(version: 2022_04_15_223157) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "rols", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "sessions", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.datetime "last_used_at", default: "2022-04-21 12:58:33"
+    t.datetime "last_used_at", default: "2022-04-21 20:48:37"
     t.boolean "status", default: true
     t.string "token"
     t.datetime "created_at", precision: 6, null: false
