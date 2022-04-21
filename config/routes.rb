@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       resources :categories, only: %i[index show create update destroy]
       resources :contacts, only: %i[create]
       resources :activities, only: %i[index show create update destroy]
+      resources :testimonials, only: %i[index show create update destroy]
 
       resources :news, only: %i[show create update destroy] do
         resources :comments, only: %i[index show create]
