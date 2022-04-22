@@ -5,6 +5,15 @@ module Api
     class SlidesController < ApplicationController
       before_action :set_slide, only: %i[show update destroy]
 
+      def create
+        @slide = Slide.new(slide_params)
+        if @slide.save
+          render json: SlideSerializer.new(@slide).serializable_hash, status: :ok
+        else
+          render json: @slide.errors, status: :unprocessable_entity
+        end
+      end
+
       def index
         @organization = Organization.find(params[:organization_id])
         @slides = @organization.slides.all
@@ -42,7 +51,7 @@ module Api
       end
 
       def slide_params
-        params.require(:slide).permit(:text, :order, :organization_id)
+        params.require(:slide).permit(:text, :order, :organization_id, :image)
       end
 
       def render_error
