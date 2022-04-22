@@ -12,14 +12,24 @@
 #  password_digest :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  role_id         :bigint           not null
 #
 # Indexes
 #
 #  index_users_on_discarded_at  (discarded_at)
 #  index_users_on_email         (email) UNIQUE
+#  index_users_on_role_id       (role_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (role_id => roles.id)
 #
 class UserSerializer
   include JSONAPI::Serializer
 
-  attributes :first_name, :last_name, :email, :created_at, :updated_at
+  attributes :first_name, :last_name, :email
+  attribute :role do |object|
+    object.role.description
+  end
+  belongs_to :role
 end

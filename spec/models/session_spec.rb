@@ -5,7 +5,23 @@
 # Table name: sessions
 #
 #  id           :bigint           not null, primary key
-#  last_used_at :datetime         default(Sat, 02 Apr 2022 02:34:42.680902000 UTC +00:00)
+#  last_used_at :datetime         default(Thu, 21 Apr 2022 20:48:37.030612000 UTC +00:00)
+#  status       :boolean          default(TRUE)
+#  token        :string
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  user_id      :bigint           not null
+#
+# Indexes
+#
+#  index_sessions_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
+#
+
+#  last_used_at :datetime         default(Tue, 19 Apr 2022 21:22:27.807763000 UTC +00:00)
 #  status       :boolean          default(TRUE)
 #  token        :string
 #  created_at   :datetime         not null
