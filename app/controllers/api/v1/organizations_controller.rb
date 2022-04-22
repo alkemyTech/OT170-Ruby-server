@@ -8,7 +8,7 @@ module Api
       def create
         @organization = Organization.new(organization_params)
         if @organization.save
-          render json: OrganizationSerializer.new(@organization).serializable_hash, status: :ok
+          render json: OrganizationSerializer.new(@organization).serializable_hash, status: :created
         else
           render json: @organization.errors, status: :unprocessable_entity
         end
@@ -29,7 +29,8 @@ module Api
           :phone,
           :email,
           :welcome_text,
-          :about_us_text
+          :about_us_text,
+          :facebook_url, :linkedin_url, :instagram_url
         )
       end
     end
