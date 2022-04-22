@@ -86,9 +86,9 @@ ActiveRecord::Schema.define(version: 2022_04_22_150451) do
 
   create_table "members", force: :cascade do |t|
     t.string "name", null: false
-    t.string "facebook_url"
-    t.string "instagram_url"
-    t.string "linkedin_url"
+    t.string "facebookUrl"
+    t.string "instagramUrl"
+    t.string "linkedinUrl"
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
