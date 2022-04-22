@@ -8,6 +8,8 @@ ruby '3.0.2'
 gem 'rails', '~> 6.1.5'
 
 gem 'active_storage_validations' # https://github.com/igorkasyanchuk/active_storage_validations
+gem "aws-sdk-s3", require: false # https://rubygems.org/gems/aws-sdk-s3
+gem 'aws-sigv4', '1.4.1.crt'
 gem 'bcrypt', '~> 3.1.7' # https://github.com/bcrypt-ruby/bcrypt-ruby
 gem 'bootsnap', '>= 1.4.4', require: false # https://rubygems.org/gems/bootsnap
 gem 'discard', '~> 1.2' # https://rubygems.org/gems/discard

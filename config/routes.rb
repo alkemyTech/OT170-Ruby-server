@@ -27,7 +27,7 @@ Rails.application.routes.draw do
         resources :slides, only: %i[index]
       end
 
-      resources :slides, only: %i[show update destroy]
+      resources :slides, only: %i[create show update destroy]
       resources :users, only: %i[index update destroy]
 
       resources :contacts, only: %i[create]
