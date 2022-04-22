@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
-require 'bcrypt'
+# Destroy anything past data for seed run
 
 Role.destroy_all
 User.destroy_all
 Activity.destroy_all
+
+# Seed actions
 
 Role.create(
   [
@@ -23,7 +25,7 @@ User.create(
   first_name: 'Admin',
   last_name: 'User',
   email: 'admin-ong@test.com',
-  password: BCrypt::Password.create('adminong'),
+  password: 'adminong',
   role_id: 1
 )
 
@@ -32,7 +34,7 @@ User.create(
     first_name: 'User',
     last_name: "##{i}",
     email: "user-ong-#{i}@test.com",
-    password: BCrypt::Password.create('123456'),
+    password: '123456',
     role_id: 2
   )
 end
@@ -81,4 +83,8 @@ Activity.create!(
   ]
 )
 
-p "Created #{Activity.count} activities"
+# log of before actions
+
+Rails.logger.info "Created #{Role.count} roles"
+Rails.logger.info "Created #{User.count} users"
+Rails.logger.info "Created #{Activity.count} activities"

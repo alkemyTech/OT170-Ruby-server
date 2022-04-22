@@ -86,9 +86,9 @@ ActiveRecord::Schema.define(version: 2022_04_22_150451) do
 
   create_table "members", force: :cascade do |t|
     t.string "name", null: false
-    t.string "facebook_url"
-    t.string "instagram_url"
-    t.string "linkedin_url"
+    t.string "facebookUrl"
+    t.string "instagramUrl"
+    t.string "linkedinUrl"
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -134,7 +134,7 @@ ActiveRecord::Schema.define(version: 2022_04_22_150451) do
 
   create_table "sessions", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.datetime "last_used_at", default: "2022-04-22 15:11:17"
+    t.datetime "last_used_at", default: "2022-04-22 12:47:19"
     t.boolean "status", default: true
     t.string "token"
     t.datetime "created_at", precision: 6, null: false

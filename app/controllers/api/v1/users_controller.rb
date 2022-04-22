@@ -23,9 +23,9 @@ module Api
         @user.discard
         head :no_content
       end
-
+      
       private
-
+      
       def set_user
         @user = User.find(params[:id])
       end
