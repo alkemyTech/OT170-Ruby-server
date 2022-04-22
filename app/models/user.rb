@@ -41,4 +41,11 @@ class User < ApplicationRecord
                     format: { with: URI::MailTo::EMAIL_REGEXP,
                               message: 'Must be a valid email address' },
                     uniqueness: { case_sensitive: false }
+
+                    private
+
+  def send_signup_email
+   @user = self
+   UserNotifierMailer.send_signup_email(@user).deliver_now
+  end
 end
