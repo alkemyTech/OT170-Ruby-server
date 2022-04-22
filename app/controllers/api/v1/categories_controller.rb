@@ -3,11 +3,10 @@
 module Api
   module V1
     class CategoriesController < ApplicationController
-      #skip_before_action :authenticate_user!
+      # skip_before_action :authenticate_user!
       before_action :set_category, only: %i[show update destroy]
-      
 
-     def index
+      def index
         @pagy, @category = pagy(Category.all, items: params[:items] || 10, page: params[:page] || 1)
         render json: CategorySerializer.new(@category).serializable_hash
       end

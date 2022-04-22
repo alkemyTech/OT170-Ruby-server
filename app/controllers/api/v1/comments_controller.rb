@@ -6,37 +6,31 @@ module Api
       before_action :set_comment, only: %i[show update destroy]
 
       def index
-
-          if params[:news_id]
-            news = News.find(params[:news_id])
-            comments = news.comments
-            render json: CommentSerializer.new(comments).serializable_hash
-          else
-            @comment = Comment.order(created_at: :desc)
-            render json: CommentSerializer.new(@comment).serializable_hash
-          end
-
+        if params[:news_id]
+          news = News.find(params[:news_id])
+          comments = news.comments
+          render json: CommentSerializer.new(comments).serializable_hash
+        else
+          @comment = Comment.order(created_at: :desc)
+          render json: CommentSerializer.new(@comment).serializable_hash
+        end
       end
 
       def show
         if @comment
           render json: commentSerializer.new(@comment).serializable_hash, status: :ok
         else
-          render_error
+          render_not_found
         end
       end
 
       def create
-        if current_user
-          @comment = Comment.new(comment_params)
-          @comment.user_id = current_user.id
-          if @comment.save
-            render json: CommentSerializer.new(@comment).serializable_hash, status: :created
-          else
-            render json: @comment.errors, status: :unprocessable_entity
-          end
+        @comment = Comment.new(comment_params)
+        @comment.user_id = current_user.id
+        if @comment.save
+          render json: CommentSerializer.new(@comment).serializable_hash, status: :created
         else
-          authenticate_user!
+          render_unprocessable_entity
         end
       end
 
@@ -44,14 +38,12 @@ module Api
         @comment.discarded_at = nil
         if current_user.id == @comment.user_id
           if @comment.update(comment_params)
-            render json: CommentSerializer.new(@comment).serializable_hash
+            render json: CommentSerializer.new(@comment).serializable_hash, status: :ok
           else
-            render json: @comment.errors, status: :unprocessable_entity
+            render_unprocessable_entity
           end
         else
-          render status: :unauthorized, json: {
-            errors: [I18n.t('errors.controllers.unauthorized')]
-          }
+          render_unauthorized
         end
       end
 
@@ -60,9 +52,7 @@ module Api
           @comment.discard
           head :no_content
         else
-          render status: :unauthorized, json: {
-            errors: [I18n.t('errors.controllers.unauthorized')]
-          }
+          render_unauthorized
         end
       end
 
@@ -76,8 +66,18 @@ module Api
         params.require(:comment).permit(:news_id, :body)
       end
 
-      def render_error
-        render json: { errors: @comment.errors.full_messages }, status: :not_found
+      def render_unauthorized
+        render status: :unauthorized, json: {
+          errors: [I18n.t('errors.controllers.unauthorized')]
+        }
+      end
+
+      def render_unprocessable_entity
+        render json: {errors: @comment.errors.full_messages }, status: :unprocessable_entity
+      end
+
+      def render_not_found
+        render json: {errors: @comment.errors.full_messages }, status: :not_found
       end
     end
   end

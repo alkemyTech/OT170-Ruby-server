@@ -9,7 +9,7 @@
 #  updated_at  :datetime         not null
 #
 FactoryBot.define do
-  factory :rol do
+  factory :role do
     name { "MyString" }
     description { "MyString" }
   end

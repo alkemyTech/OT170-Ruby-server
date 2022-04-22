@@ -1,15 +1,16 @@
 # == Schema Information
 #
-# Table name: rols
+# Table name: roles
 #
 #  id          :bigint           not null, primary key
-#  description :string
+#  description :text
 #  name        :string           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
-require 'rails_helper'
+class RoleSerializer
+  include JSONAPI::Serializer
 
-RSpec.describe Rol, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  attributes :name, :description
+  has_many :user
 end
