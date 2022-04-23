@@ -51,7 +51,7 @@ module Api
       end
 
       def slide_params
-        params.require(:slide).permit(:text, :order, :organization_id, :image)
+        params.require(:slide).permit(:text, :order, :organization_id, images: [])
       end
 
       def render_error

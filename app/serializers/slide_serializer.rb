@@ -24,7 +24,7 @@
 class SlideSerializer
   include JSONAPI::Serializer
   attributes :order, :organization_id
-  attribute :image do |slide|
-    Rails.application.routes.url_helpers.rails_blob_url(slide.image, only_path: true)
+  attribute :image do |object|
+    Rails.application.routes.url_helpers.rails_blob_path(object.image, only_path: true)
   end
 end

@@ -26,7 +26,7 @@ class Slide < ApplicationRecord
 
   include Discard::Model
 
-  has_one_attached :image
+  has_many_attached :images
 
   validates :text, presence: true
   validates :order, presence: true
