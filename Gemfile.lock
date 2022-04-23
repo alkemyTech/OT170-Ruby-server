@@ -69,6 +69,25 @@ GEM
       activerecord (>= 3.2, < 8.0)
       rake (>= 10.4, < 14.0)
     ast (2.4.2)
+    aws-crt (0.1.5)
+      ffi
+    aws-eventstream (1.2.0)
+    aws-partitions (1.579.0)
+    aws-sdk-core (3.130.1)
+      aws-eventstream (~> 1, >= 1.0.2)
+      aws-partitions (~> 1, >= 1.525.0)
+      aws-sigv4 (~> 1.1)
+      jmespath (~> 1.0)
+    aws-sdk-kms (1.56.0)
+      aws-sdk-core (~> 3, >= 3.127.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-s3 (1.113.0)
+      aws-sdk-core (~> 3, >= 3.127.0)
+      aws-sdk-kms (~> 1)
+      aws-sigv4 (~> 1.4)
+    aws-sigv4 (1.4.1.crt)
+      aws-crt
+      aws-eventstream (~> 1, >= 1.0.2)
     bcrypt (3.1.17)
     bootsnap (1.11.1)
       msgpack (~> 1.2)
@@ -105,6 +124,7 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    jmespath (1.6.1)
     json (2.6.1)
     jsonapi-serializer (2.2.0)
       activesupport (>= 4.2)
@@ -261,6 +281,8 @@ PLATFORMS
 DEPENDENCIES
   active_storage_validations
   annotate (~> 3.0, >= 3.0.3)
+  aws-sdk-s3
+  aws-sigv4 (= 1.4.1.crt)
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.4)
   brakeman (~> 5.1, >= 5.1.2)
@@ -294,4 +316,4 @@ RUBY VERSION
    ruby 3.0.2p107
 
 BUNDLED WITH
-   2.3.9
+   2.3.12

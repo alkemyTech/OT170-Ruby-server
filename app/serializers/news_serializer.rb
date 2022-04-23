@@ -11,7 +11,7 @@
 #  news_type    :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  category_id  :bigint           not null
+#  category_id  :bigint
 #
 # Indexes
 #
@@ -24,5 +24,8 @@
 #
 class NewsSerializer
   include JSONAPI::Serializer
+  
   attributes :image, :name, :content, :news_type
+  has_many :comments
+  
 end

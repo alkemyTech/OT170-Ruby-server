@@ -10,38 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_09_004809) do
+ActiveRecord::Schema.define(version: 2022_04_22_150451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "active_storage_attachments", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "record_type", null: false
-    t.bigint "record_id", null: false
-    t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
-    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
-    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
-  end
-
-  create_table "active_storage_blobs", force: :cascade do |t|
-    t.string "key", null: false
-    t.string "filename", null: false
-    t.string "content_type"
-    t.text "metadata"
-    t.string "service_name", null: false
-    t.bigint "byte_size", null: false
-    t.string "checksum", null: false
-    t.datetime "created_at", null: false
-    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
-  end
-
-  create_table "active_storage_variant_records", force: :cascade do |t|
-    t.bigint "blob_id", null: false
-    t.string "variation_digest", null: false
-    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
-  end
 
   create_table "activities", force: :cascade do |t|
     t.string "name", null: false
@@ -58,9 +30,19 @@ ActiveRecord::Schema.define(version: 2022_04_09_004809) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "discarded_at"
-    t.bigint "news_id"
     t.index ["discarded_at"], name: "index_categories_on_discarded_at"
-    t.index ["news_id"], name: "index_categories_on_news_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "body"
+    t.bigint "user_id", null: false
+    t.bigint "news_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_comments_on_discarded_at"
+    t.index ["news_id"], name: "index_comments_on_news_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -92,7 +74,7 @@ ActiveRecord::Schema.define(version: 2022_04_09_004809) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "discarded_at"
-    t.bigint "category_id", null: false
+    t.bigint "category_id"
     t.string "news_type"
     t.index ["category_id"], name: "index_news_on_category_id"
     t.index ["discarded_at"], name: "index_news_on_discarded_at"
@@ -108,10 +90,11 @@ ActiveRecord::Schema.define(version: 2022_04_09_004809) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "discarded_at"
-    t.bigint "slide_id"
+    t.string "facebook_url"
+    t.string "linkedin_url"
+    t.string "instagram_url"
     t.index ["discarded_at"], name: "index_organizations_on_discarded_at"
     t.index ["email"], name: "index_organizations_on_email", unique: true
-    t.index ["slide_id"], name: "index_organizations_on_slide_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -123,7 +106,7 @@ ActiveRecord::Schema.define(version: 2022_04_09_004809) do
 
   create_table "sessions", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.datetime "last_used_at", default: "2022-04-11 03:09:25"
+    t.datetime "last_used_at", default: "2022-04-22 23:59:49"
     t.boolean "status", default: true
     t.string "token"
     t.datetime "created_at", precision: 6, null: false
@@ -169,16 +152,17 @@ ActiveRecord::Schema.define(version: 2022_04_09_004809) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "discarded_at"
+    t.bigint "role_id", null: false
     t.index ["discarded_at"], name: "index_users_on_discarded_at"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["role_id"], name: "index_users_on_role_id"
   end
 
-  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "categories", "news"
+  add_foreign_key "comments", "news"
+  add_foreign_key "comments", "users"
   add_foreign_key "news", "categories"
-  add_foreign_key "organizations", "slides"
   add_foreign_key "sessions", "users"
   add_foreign_key "slides", "organizations"
   add_foreign_key "user_verifications", "users"
+  add_foreign_key "users", "roles"
 end
