@@ -20,7 +20,7 @@ class Category < ApplicationRecord
 
   has_one_attached :image
 
-  belongs_to :news, optional: true
+  has_many :news, dependent: :destroy
 
   validates :name, presence: true
 end

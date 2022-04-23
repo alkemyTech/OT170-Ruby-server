@@ -15,8 +15,15 @@
 #
 #  index_categories_on_discarded_at  (discarded_at)
 #
+
 class CategorySerializer
   include JSONAPI::Serializer
 
-  attributes :image, :name, :description
+  attributes :name, :description
+
+  attribute :image do |object|
+    object.image.url if object.image.filename
+  end
+
+  has_many :news
 end

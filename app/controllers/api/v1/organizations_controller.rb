@@ -3,7 +3,7 @@
 module Api
   module V1
     class OrganizationsController < ApplicationController
-      before_action :is_admin?, only: %i[create]
+      before_action :admin?, only: %i[create]
 
       def create
         @organization = Organization.new(organization_params)

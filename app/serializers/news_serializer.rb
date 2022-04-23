@@ -24,8 +24,11 @@
 #
 class NewsSerializer
   include JSONAPI::Serializer
-  
-  attributes :image, :name, :content, :news_type
+
+  attributes :name, :content, :news_type, :comments
+  attribute :image do |object|
+    object.image.url if object.image.filename
+  end
+
   has_many :comments
-  
 end

@@ -15,6 +15,10 @@
 #
 class ActivitySerializer
   include JSONAPI::Serializer
-  
-  attributes :image, :name, :content
+
+  attributes :name, :content
+
+  attribute :image do |object|
+    object.image.url if object.image.filename
+  end
 end

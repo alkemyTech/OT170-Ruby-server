@@ -20,5 +20,8 @@
 #
 class MemberSerializer
   include JSONAPI::Serializer
-  attributes :image, :name, :description, :facebook_url, :instagram_url, :linkedin_url
+  attributes :name, :description, :facebook_url, :instagram_url, :linkedin_url
+  attribute :image do |object|
+    object.image.url if object.image.filename
+  end
 end

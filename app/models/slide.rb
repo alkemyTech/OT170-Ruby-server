@@ -22,11 +22,11 @@
 #  fk_rails_...  (organization_id => organizations.id)
 #
 class Slide < ApplicationRecord
-  belongs_to :organization
-
   include Discard::Model
 
   has_one_attached :image
+
+  belongs_to :organization
 
   validates :text, presence: true
   validates :order, presence: true
