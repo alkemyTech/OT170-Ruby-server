@@ -26,8 +26,8 @@ class News < ApplicationRecord
   include Discard::Model
 
   has_one_attached :image
-  has_one :category, dependent: :destroy
   has_many :comments, dependent: :destroy
+  belongs_to :category, dependent: :destroy
 
   validates :name, presence: true
   validates :content, presence: true

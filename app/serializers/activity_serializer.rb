@@ -15,6 +15,12 @@
 #
 class ActivitySerializer
   include JSONAPI::Serializer
-  
-  attributes :image, :name, :content
+
+  attributes :name, :content
+
+  attribute :image do |object|
+    if object.image.filename
+      Rails.application.routes.url_helpers.rails_blob_path(object.image, only_path: true)
+    end
+  end
 end

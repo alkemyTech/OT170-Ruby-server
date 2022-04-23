@@ -25,6 +25,11 @@
 #
 class OrganizationSerializer
   include JSONAPI::Serializer
-  attributes :name, :image, :phone, :address, :organization_slides
+  attributes :name, :phone, :address, :organization_slides
+  attribute :image do |object|
+    if object.image.filename
+      Rails.application.routes.url_helpers.rails_blob_path(object.image, only_path: true)
+    end
+  end
   attributes :facebook_url, :linkedin_url, :instagram_url
 end

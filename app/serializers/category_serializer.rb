@@ -15,8 +15,17 @@
 #
 #  index_categories_on_discarded_at  (discarded_at)
 #
+
 class CategorySerializer
   include JSONAPI::Serializer
 
-  attributes :image, :name, :description
+  attributes :name, :description
+
+  attribute :image do |object|
+    if object.image.filename
+      Rails.application.routes.url_helpers.rails_blob_path(object.image, only_path: true)
+    end
+  end
+
+  has_many :news
 end
