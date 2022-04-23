@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'pagy/extras/metadata'
+require 'pagy/extras/headers'
+
 # Pagy initializer file (5.10.1)
 # Customize only what you really need and notice that the core Pagy works also without any of the following lines.
 # Should you just cherry pick part of this file, please maintain the require-order of the extras
@@ -28,7 +31,6 @@ Pagy::DEFAULT[:items] = 10
 
 # Extras
 # See https://ddnexus.github.io/pagy/extras
-
 # Backend Extras
 
 # Array extra: Paginate arrays efficiently, avoiding expensive array-wrapping and without overriding
