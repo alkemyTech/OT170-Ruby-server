@@ -12,7 +12,7 @@ module Api
           create_role
           if @user.save
             @token = jwt_session_create(@user)
-            return success_user_created if @token
+            return send_mail && success_user_created if @token
 
             error_token_create
           else
@@ -32,6 +32,10 @@ module Api
           render status: :created, json: {
             token: @token
           }
+        end
+
+        def send_mail
+          UserMailer.with(user: @user).welcome_email.deliver_later
         end
 
         def registration_params
