@@ -15,5 +15,8 @@
 #
 class TestimonialSerializer
   include JSONAPI::Serializer
-  attributes :image, :name, :content
+  attributes :name, :content
+  attribute :image do |object|
+    Rails.application.routes.url_helpers.rails_blob_path(object.image, only_path: true)
+  end
 end

@@ -3,9 +3,8 @@
 module Api
   module V1
     class NewsController < ApplicationController
-      #skip_before_action :authenticate_user!
       before_action :set_news, only: %i[show update destroy]
-      
+
       def show
         if @news
           render json: NewsSerializer.new(@news).serializable_hash, status: :ok

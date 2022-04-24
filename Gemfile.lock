@@ -282,7 +282,6 @@ DEPENDENCIES
   active_storage_validations
   annotate (~> 3.0, >= 3.0.3)
   aws-sdk-s3
-  aws-sigv4 (= 1.4.1.crt)
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.4)
   brakeman (~> 5.1, >= 5.1.2)

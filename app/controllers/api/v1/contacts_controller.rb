@@ -3,7 +3,6 @@
 module Api
   module V1
     class ContactsController < ApplicationController
-      before_action :set_contact
 
       def index
         @contact = Contact.all
@@ -20,10 +19,6 @@ module Api
       end
 
       private
-
-      def set_contact
-        @contact = contact.find(params[:id])
-      end
 
       def contact_params
         params.require(:contact).permit(:name, :phone, :email, :message)

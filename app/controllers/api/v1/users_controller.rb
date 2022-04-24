@@ -3,7 +3,7 @@
 module Api
   module V1
     class UsersController < ApplicationController
-      before_action :set_user, only: %i[update show destroy]
+      before_action :set_user, only: %i[update destroy]
 
       def index
         @users = User.all
@@ -23,9 +23,9 @@ module Api
         @user.discard
         head :no_content
       end
-      
+
       private
-      
+
       def set_user
         @user = User.find(params[:id])
       end
