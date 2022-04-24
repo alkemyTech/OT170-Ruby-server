@@ -3,6 +3,7 @@
 module Api
   module V1
     class OrganizationsController < ApplicationController
+      before_action :authenticate_user!, except: %i[public]
       before_action :admin?, only: %i[create]
 
       def create
