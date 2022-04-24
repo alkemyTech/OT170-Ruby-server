@@ -27,7 +27,9 @@ class NewsSerializer
 
   attributes :name, :content, :news_type
   attribute :image do |object|
-    Rails.application.routes.url_helpers.rails_blob_path(object.image, only_path: true)
+    if object.image.filename
+      Rails.application.routes.url_helpers.rails_blob_path(object.image, only_path: true)
+    end
   end
   has_many :comments
 
