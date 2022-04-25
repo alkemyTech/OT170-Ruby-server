@@ -3,7 +3,14 @@
 module Api
   module V1
     class NewsController < ApplicationController
+      skip_before_action :authenticate_user!, only: %i[index]
       before_action :set_news, only: %i[show update destroy]
+      after_action { pagy_headers_merge(@pagy) if @pagy }
+
+      def index
+        @pagy, @news = pagy(News.all, page: params[:page] || 1)
+        render json: NewsSerializer.new(@news).serializable_hash
+      end
 
       def show
         if @news

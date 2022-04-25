@@ -3,6 +3,7 @@
 module Api
   module V1
     class CommentsController < ApplicationController
+      skip_before_action :authenticate_user!, only: %i[index]
       before_action :set_comment, only: %i[show update destroy]
 
       def index
@@ -18,7 +19,7 @@ module Api
 
       def show
         if @comment
-          render json: commentSerializer.new(@comment).serializable_hash, status: :ok
+          render json: CommentSerializer.new(@comment).serializable_hash, status: :ok
         else
           render_not_found
         end
@@ -73,11 +74,11 @@ module Api
       end
 
       def render_unprocessable_entity
-        render json: {errors: @comment.errors.full_messages }, status: :unprocessable_entity
+        render json: { errors: @comment.errors.full_messages }, status: :unprocessable_entity
       end
 
       def render_not_found
-        render json: {errors: @comment.errors.full_messages }, status: :not_found
+        render json: { errors: @comment.errors.full_messages }, status: :not_found
       end
     end
   end

@@ -25,12 +25,10 @@
 class NewsSerializer
   include JSONAPI::Serializer
 
-  attributes :name, :content, :news_type
+  attributes :name, :content, :news_type, :comments
   attribute :image do |object|
-    if object.image.filename
-      Rails.application.routes.url_helpers.rails_blob_path(object.image, only_path: true)
-    end
+    object.image.url if object.image.filename
   end
-  has_many :comments
 
+  has_many :comments
 end

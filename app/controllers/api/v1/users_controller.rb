@@ -3,10 +3,12 @@
 module Api
   module V1
     class UsersController < ApplicationController
+      before_action :admin?, only: %i[index]
       before_action :set_user, only: %i[update destroy]
+      after_action { pagy_headers_merge(@pagy) if @pagy }
 
       def index
-        @users = User.all
+        @pagy, @users = pagy(User.all, page: params[:page] || 1)
         render json: UserSerializer.new(@users).serializable_hash
       end
 

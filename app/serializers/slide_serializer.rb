@@ -21,12 +21,14 @@
 #
 #  fk_rails_...  (organization_id => organizations.id)
 #
+
 class SlideSerializer
   include JSONAPI::Serializer
-  attributes :order, :organization_id
+
+  attributes :text, :order
   attribute :image do |object|
-    if object.image.filename
-      Rails.application.routes.url_helpers.rails_blob_path(object.image, only_path: true)
-    end
+    object.image.url if object.image.filename
   end
+
+  belongs_to :organization
 end
