@@ -3,10 +3,12 @@
 module Api
   module V1
     class TestimonialsController < ApplicationController
-     before_action :set_testimonial, only: %i[show update destroy]
+      skip_before_action :authenticate_user!, only: %i[index]
+      before_action :set_testimonial, only: %i[show update destroy]
+      after_action { pagy_headers_merge(@pagy) if @pagy }
 
       def index
-        @pagy, @testimonial = pagy(Testimonial.all, items: params[:items] || 10, page: params[:page] || 1)
+        @pagy, @testimonial = pagy(Testimonial.all, page: params[:page] || 1)
         render json: TestimonialSerializer.new(@testimonial).serializable_hash
       end
 

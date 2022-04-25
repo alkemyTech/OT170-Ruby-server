@@ -4,7 +4,9 @@
 
 Role.destroy_all
 User.destroy_all
+Member.destroy_all
 Activity.destroy_all
+Testimonial.destroy_all
 
 # Seed actions
 
@@ -24,7 +26,7 @@ Role.create(
 User.create(
   first_name: 'Admin',
   last_name: 'User',
-  email: 'admin-ong@test.com',
+  email: 'admin-ong@ong.com',
   password: 'adminong',
   role_id: 1
 )
@@ -33,9 +35,16 @@ User.create(
   User.create(
     first_name: 'User',
     last_name: "##{i}",
-    email: "user-ong-#{i}@test.com",
+    email: "test-ong-#{i}@ong.com",
     password: '123456',
     role_id: 2
+  )
+end
+
+10.times do |i|
+  Testimonial.create(
+    name: "Maria #{i}",
+    content: 'Testimonials'
   )
 end
 
@@ -88,3 +97,5 @@ Activity.create!(
 Rails.logger.info "Created #{Role.count} roles"
 Rails.logger.info "Created #{User.count} users"
 Rails.logger.info "Created #{Activity.count} activities"
+Rails.logger.info "Created #{Member.count} members"
+Rails.logger.info "Created #{Testimonial.count} testimonials"
