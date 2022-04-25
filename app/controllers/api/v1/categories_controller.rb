@@ -4,9 +4,10 @@ module Api
   module V1
     class CategoriesController < ApplicationController
       before_action :set_category, only: %i[show update destroy]
+      after_action { pagy_headers_merge(@pagy) if @pagy }
 
       def index
-        @pagy, @category = pagy(Category.all, items: params[:items] || 10, page: params[:page] || 1)
+        @pagy, @category = pagy(Category.all, page: params[:page] || 1)
         render json: CategorySerializer.new(@category).serializable_hash
       end
 

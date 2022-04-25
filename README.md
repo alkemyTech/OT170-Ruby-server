@@ -1,3 +1,11 @@
+# Usuarios de testeo y regulares
+Usuarios de test:
+test-ong-1@ong.com (test-ong del 1 al 10)
+123456
+
+Usuario administrador:
+admin-ong@ong.com
+adminong
 # base-ong-server-ruby
 Repositorio base para Caso ONG de Ruby
 

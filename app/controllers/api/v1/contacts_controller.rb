@@ -12,6 +12,7 @@ module Api
       def create
         @contact = Contact.new(contact_params)
         if @contact.save
+          send_mail
           render json: ContactSerializer.new(@contact).serializable_hash, status: :created
         else
           render json: @contact.errors, status: :unprocessable_entity
@@ -22,6 +23,10 @@ module Api
 
       def contact_params
         params.require(:contact).permit(:name, :phone, :email, :message)
+      end
+
+      def send_mail
+        ContactMailer.with(contact: @contact).invite.deliver_later
       end
 
       def render_error

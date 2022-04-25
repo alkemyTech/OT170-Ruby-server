@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       post '/organizations/public', to: 'organizations#create'
 
       resources :categories, only: %i[index show create update destroy]
-      resources :contacts, only: %i[create]
+      resources :contacts, only: %i[index create]
       resources :activities, only: %i[index show create update destroy]
       resources :testimonials, only: %i[index show create update destroy]
 
