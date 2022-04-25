@@ -4,7 +4,7 @@ module Api
   module V1
     module Auth
       class SessionsController < ApplicationController
-        skip_before_action :authenticate_user!
+        skip_before_action :authenticate_user!, only: %i[create]
         include CreateSession
 
         def create
@@ -20,13 +20,25 @@ module Api
           end
         end
 
+        def destroy
+          current_user.sessions.delete
+          logout
+        end
+
         private
 
         def success_session_created
           response.headers['Authorization'] = "Bearer #{@token}"
           render status: :created, json: {
             token: @token,
-            user: UserSerializer.new(@user).serializable_hash
+            message: "Has iniciado sesión correctamente #{@user.first_name}"
+          }
+        end
+
+        def logout
+          response.headers['Authorization'] = ''
+          render status: :ok, json: {
+            message: 'Haz cerrado sesión'
           }
         end
 

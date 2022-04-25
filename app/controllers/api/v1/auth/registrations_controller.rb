@@ -30,7 +30,8 @@ module Api
         def success_user_created
           response.headers['Authorization'] = "Bearer #{@token}"
           render status: :created, json: {
-            token: @token
+            token: @token,
+            message: 'Te has registrado con exito!'
           }
         end
 

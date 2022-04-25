@@ -50,7 +50,7 @@ module Api
       end
 
       def member_params
-        params.require(:member).permit(:image, :name)
+        params.require(:member).permit(:image, :name, :facebook_url, :instagram_url, :linkedin_url)
       end
 
       def render_error
