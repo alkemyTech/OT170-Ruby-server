@@ -5,7 +5,7 @@
 # Table name: sessions
 #
 #  id           :bigint           not null, primary key
-#  last_used_at :datetime         default(Mon, 25 Apr 2022 16:30:52.601029000 -03 -03:00)
+#  last_used_at :datetime         default(Mon, 25 Apr 2022 16:51:23.393181000 -03 -03:00)
 #  status       :boolean          default(TRUE)
 #  token        :string
 #  created_at   :datetime         not null
@@ -19,24 +19,7 @@
 # Foreign Keys
 #
 #  fk_rails_...  (user_id => users.id)
-#
 
-#  last_used_at :datetime         default(Tue, 19 Apr 2022 21:22:27.807763000 UTC +00:00)
-
-#  status       :boolean          default(TRUE)
-#  token        :string
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  user_id      :bigint           not null
-#
-# Indexes
-#
-#  index_sessions_on_user_id  (user_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (user_id => users.id)
-#
 class Session < ApplicationRecord
   belongs_to :user
   before_validation :generate_token, on: :create

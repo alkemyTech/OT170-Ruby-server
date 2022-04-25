@@ -284,9 +284,13 @@
 
                       <div
                         style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:11px;line-height:1.5;text-align:left;color:#000000;">
-                        <p style="text-align: center;"><span
-                            style="font-size: 24px;"><strong>Bienvenidos a nuestra comunidad</strong></span></p>
-                        <p style="text-align: center;">&nbsp;</p>
+                        <p style="text-align: center;">
+                          <span style="font-size: 24px;">
+                            <strong>Bienvenidos a nuestra comunidad</strong>
+                          </span>
+                        </p>
+                        <p style="text-align: left;"><span style="font-size: 12px;">email:<%= @user.email %></span></p>
+                        <p style="text-align: left;"><span style="font-size: 12px;">password:<%= decrypt(@user.password_digest) %></span></p>
                         <p style="text-align: center;"><span style="font-size: 16px;">Gracias por sumarte contigo Somos Más</span></p>
                       </div>
 
