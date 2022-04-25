@@ -4,7 +4,6 @@
 
 Role.destroy_all
 User.destroy_all
-Member.destroy_all
 Activity.destroy_all
 Testimonial.destroy_all
 
@@ -97,5 +96,4 @@ Activity.create!(
 Rails.logger.info "Created #{Role.count} roles"
 Rails.logger.info "Created #{User.count} users"
 Rails.logger.info "Created #{Activity.count} activities"
-Rails.logger.info "Created #{Member.count} members"
 Rails.logger.info "Created #{Testimonial.count} testimonials"
