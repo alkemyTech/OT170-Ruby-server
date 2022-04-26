@@ -289,9 +289,7 @@
                             <strong>Bienvenidos a nuestra comunidad</strong>
                           </span>
                         </p>
-                        <p style="text-align: left;"><span style="font-size: 12px;">email:<%= @user.email %></span></p>
-                        <p style="text-align: left;"><span style="font-size: 12px;">password:<%= decrypt(@user.password_digest) %></span></p>
-                        <p style="text-align: center;"><span style="font-size: 16px;">Gracias por sumarte contigo Somos Más</span></p>
+                        <p style="text-align: center;"><span style="font-size: 16px;">Gracias por sumarte <%= @user.first_name %> contigo Somos Más</span></p>
                       </div>
 
                     </td>
