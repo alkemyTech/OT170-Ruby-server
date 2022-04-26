@@ -7,6 +7,7 @@ Rails.application.routes.draw do
         post '/register', to: 'registrations#create'
         post '/login', to: 'sessions#create'
         get '/me', to: 'users#me'
+        delete '/logout', to: 'sessions#destroy'
       end
 
       post '/organizations/public', to: 'organizations#create'
