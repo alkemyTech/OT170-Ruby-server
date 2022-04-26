@@ -6,6 +6,8 @@ Role.destroy_all
 User.destroy_all
 Activity.destroy_all
 Testimonial.destroy_all
+Category.destroy_all
+News.destroy_all
 
 # Seed actions
 
@@ -40,12 +42,34 @@ User.create(
   )
 end
 
-10.times do |i|
-  Testimonial.create(
-    name: "Maria #{i}",
-    content: 'Testimonials'
-  )
-end
+Testimonial.create(
+  [
+    {
+      name: 'Cecilia',
+      content: 'Se nota el esfuerzo que hay detras de las actividades
+      que ofrecen para ayudar a chicos que realmente lo necesitan.'
+    },
+    {
+      name: 'Marcos',
+      content: 'Considero un gran logro la integración escolar de niños y
+      jóvenes del barrio tanto socioeducativo como emocional.'
+    },
+    {
+      name: 'Maria',
+      content: 'Buena iniciativa de parte del grupo de voluntarios que recibe
+      a los niños para ayudarlos a estudiar o hacer la tarea.'
+    }
+  ]
+)
+
+familyCategory = Category.create!(name: 'Familia', description: 'Programa de ayuda para las familias')
+
+familyCategory.news.create!(name: 'Bienvenidas Familias!', content: 'Gracias a todas las familias nuevas que confian en nosotros')
+
+educationCategory = Category.create!(name: 'Educacion', description: 'Programa de ayuda para los jovenes')
+
+educationCategory.news.create!(name: 'Nuevo espacio para los adolecentes', content: 'Presentamos nuevos horarios
+  por la noche para aquellos jovenes que no pueden asistir a los turnos de la mañana o tarde')
 
 Activity.create!(
   [
@@ -97,3 +121,5 @@ Rails.logger.info "Created #{Role.count} roles"
 Rails.logger.info "Created #{User.count} users"
 Rails.logger.info "Created #{Activity.count} activities"
 Rails.logger.info "Created #{Testimonial.count} testimonials"
+Rails.logger.info "Created #{Category.count} categories"
+Rails.logger.info "Created #{News.count} news"

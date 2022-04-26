@@ -31,5 +31,5 @@ class News < ApplicationRecord
 
   validates :name, presence: true
   validates :content, presence: true
-  validates :image, attached: true, content_type: ['image/png', 'image/jpg', 'image/jpeg']
+  # validates :image, attached: true, content_type: ['image/png', 'image/jpg', 'image/jpeg']
 end

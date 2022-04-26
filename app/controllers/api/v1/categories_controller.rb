@@ -3,6 +3,7 @@
 module Api
   module V1
     class CategoriesController < ApplicationController
+      skip_before_action :authenticate_user!, only: %i[index]
       before_action :set_category, only: %i[show update destroy]
       after_action { pagy_headers_merge(@pagy) if @pagy }
 
